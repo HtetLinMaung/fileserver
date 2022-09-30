@@ -11,6 +11,9 @@ module.exports = brewExpressFuncFindOneOrUpdateOrDeleteByParam(
   File,
   {
     afterFunctionStart: handleAuthorization,
+    beforeQuery: (options, req) => {
+      options["createdby"] = req.body.createdby;
+    },
     beforeUpdate: (data, req) => {
       const userStorageFolder = path.join(
         storageFolderPath,

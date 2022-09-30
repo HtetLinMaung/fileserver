@@ -29,6 +29,9 @@ module.exports = brewExpressFuncCreateOrFindAll(
       );
       delete req.body.file;
     },
+    beforeQuery: (options, req) => {
+      options["createdby"] = req.body.createdby;
+    },
   },
   "mongoose"
 );

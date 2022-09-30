@@ -1,4 +1,5 @@
 const { default: http } = require("code-alchemy/http");
+const { asyncEach } = require("starless-async");
 
 const verifyToken = async (token) => {
   return http.post(
@@ -34,4 +35,15 @@ exports.handleAuthorization = async (req) => {
   }
   req.tokenPayload = response.data.data;
   req.body.createdby = req.tokenPayload.userId;
+  const method = req.method.toLowerCase();
+  if (method == "post" || method == "put") {
+    await asyncEach(
+      ["_id", "createdAt", "updatedAt", "createdby"],
+      async (k) => {
+        if (k in req.body) {
+          delete req.body[k];
+        }
+      }
+    );
+  }
 };
