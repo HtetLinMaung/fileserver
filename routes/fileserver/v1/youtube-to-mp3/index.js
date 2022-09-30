@@ -8,5 +8,5 @@ module.exports = brewBlankExpressFunc(async (req, res) => {
   res.setHeader("Content-Type", "audio/mpeg");
   const stream = youtube(url);
   console.log(stream);
-  stream.pip(res);
+  stream.pipe(res);
 });
