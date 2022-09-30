@@ -18,7 +18,7 @@
     "starless-server": "^1.8.3"
   },
   "dependencies": {
-    "code-alchemy": "^1.0.26",
+    "code-alchemy": "^1.1.0",
     "mime": "^3.0.0",
     "mongoose": "^6.6.1",
     "multiparty": "^4.2.3",
