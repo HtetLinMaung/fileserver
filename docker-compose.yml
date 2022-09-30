@@ -13,5 +13,6 @@ services:
       - db_url=mongodb://150.95.82.125:27018/fileserver
       - authservice_domain=http://150.95.82.125:3001
       - request_body_size=5gb
+      - log_server=http://150.95.82.125:9999
     volumes:
       - /home/hlm/app/fileserver/storage:/app/storage
