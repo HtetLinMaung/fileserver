@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "OpenAPI 3.0",
+    "description": "",
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3003"
+    }
+  ],
+  "tags": [
+    {
+      "name": "routes",
+      "description": "Everything about your Routes"
+    }
+  ],
+  "paths": {
+    "/files/upload-as-base64": {
+      "get": {
+        "tags": [
+          "routes"
+        ],
+        "operationId": "getfiles_upload-as-base64"
+      },
+      "post": {
+        "tags": [
+          "routes"
+        ],
+        "operationId": "postfiles_upload-as-base64"
+      },
+      "put": {
+        "tags": [
+          "routes"
+        ],
+        "operationId": "putfiles_upload-as-base64"
+      },
+      "patch": {
+        "tags": [
+          "routes"
+        ],
+        "operationId": "patchfiles_upload-as-base64"
+      },
+      "delete": {
+        "tags": [
+          "routes"
+        ],
+        "operationId": "deletefiles_upload-as-base64"
+      }
+    }
+  }
+}

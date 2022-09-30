@@ -1,0 +1,29 @@
+{
+  "name": "fileserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "starless-server start",
+    "dev": "nodemon node_modules/starless-server start",
+    "lint-init": "eslint --init",
+    "clean": "rm -rf storage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "nodemon": "^2.0.20",
+    "starless-server": "^1.8.3"
+  },
+  "dependencies": {
+    "code-alchemy": "^1.0.26",
+    "mime": "^3.0.0",
+    "mongoose": "^6.6.1",
+    "multiparty": "^4.2.3",
+    "starless-async": "^1.0.0",
+    "starless-upload-chunks": "^0.0.1",
+    "youtube-audio-stream": "^0.3.61"
+  }
+}

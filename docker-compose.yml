@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  fileserver:
+    image: htetlinmaung/fileserver
+    build: .
+    restart: always
+    ports:
+      - "3003:3000"
+    environment:
+      - app_id=fileserver
+      - access_key=c071e41eeffc521916867e278cc68a491feaabd4
+      - db_url=mongodb://150.95.82.125:27018/fileserver
+      - authservice_domain=http://150.95.82.125:3001
+      - request_body_size=5gb
+    volumes:
+      - /home/hlm/app/fileserver/storage:/app/storage
