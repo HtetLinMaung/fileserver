@@ -18,11 +18,13 @@
     "starless-server": "^1.8.3"
   },
   "dependencies": {
-    "code-alchemy": "^1.1.5",
+    "code-alchemy": "^1.1.7",
     "mime": "^3.0.0",
     "mongoose": "^6.6.1",
     "multiparty": "^4.2.3",
+    "resize-img": "^2.0.0",
     "starless-async": "^1.0.0",
+    "starless-http": "^1.0.0",
     "starless-upload-chunks": "^0.0.1",
     "youtube-audio-stream": "^0.3.61"
   }

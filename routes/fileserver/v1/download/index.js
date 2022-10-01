@@ -8,8 +8,10 @@ module.exports = brewBlankExpressFunc(async (req, res) => {
   if (!file) {
     return res.status(404).send("File not found!");
   }
+
   res.setHeader("Content-Disposition", `attachment; filename=${file.name}`);
   res.setHeader("Content-Type", mime.getType(file.location));
+
   const filestream = fs.createReadStream(file.location);
   filestream.pipe(res);
 });

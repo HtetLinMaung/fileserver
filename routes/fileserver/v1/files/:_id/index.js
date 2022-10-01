@@ -6,6 +6,9 @@ const fs = require("fs");
 const File = require("../../../../../models/File");
 const { handleAuthorization } = require("../../../../../services/auth");
 const { storageFolderPath } = require("../../../../../constants");
+const { downloadFromUrl } = require("starless-http/util");
+
+const resizeImg = require("resize-img");
 
 module.exports = brewExpressFuncFindOneOrUpdateOrDeleteByParam(
   File,
@@ -14,7 +17,7 @@ module.exports = brewExpressFuncFindOneOrUpdateOrDeleteByParam(
     beforeQuery: (options, req) => {
       options["createdby"] = req.body.createdby;
     },
-    beforeUpdate: (data, req) => {
+    beforeUpdate: async (data, req) => {
       const userStorageFolder = path.join(
         storageFolderPath,
         req.body.createdby
@@ -22,18 +25,29 @@ module.exports = brewExpressFuncFindOneOrUpdateOrDeleteByParam(
       if (!fs.existsSync(userStorageFolder)) {
         fs.mkdirSync(userStorageFolder);
       }
-      const { file, name } = req.body;
+      const { file, name, resize } = req.body;
       req.body.location = path.join(userStorageFolder, name);
       if (req.body.location != data.location && fs.existsSync(data.location)) {
         fs.rmSync(data.location);
       }
-      fs.writeFileSync(
-        req.body.location,
-        Buffer.from(
-          file.includes("base64,") ? file.split("base64,")[1] : file,
-          "base64"
-        )
-      );
+      if (file.startsWith("http")) {
+        await downloadFromUrl(file, req.body.location);
+      } else {
+        fs.writeFileSync(
+          req.body.location,
+          Buffer.from(
+            file.includes("base64,") ? file.split("base64,")[1] : file,
+            "base64"
+          )
+        );
+      }
+      if (resize) {
+        const image = await resizeImg(
+          fs.readFileSync(req.body.location),
+          resize
+        );
+        fs.writeFileSync(req.body.location, image);
+      }
 
       delete req.body.file;
     },

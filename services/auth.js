@@ -1,4 +1,4 @@
-const { default: http } = require("code-alchemy/http");
+const { default: http } = require("starless-http");
 const { asyncEach } = require("starless-async");
 
 const verifyToken = async (token) => {
@@ -27,6 +27,7 @@ exports.handleAuthorization = async (req) => {
   if (err) {
     throw err;
   }
+
   if (response.data.code != 200) {
     const err = new Error(response.data.message);
     err.status = response.data.code;
@@ -37,13 +38,10 @@ exports.handleAuthorization = async (req) => {
   req.body.createdby = req.tokenPayload.userId;
   const method = req.method.toLowerCase();
   if (method == "post" || method == "put") {
-    await asyncEach(
-      ["_id", "createdAt", "updatedAt", "createdby"],
-      async (k) => {
-        if (k in req.body) {
-          delete req.body[k];
-        }
+    await asyncEach(["_id", "createdAt", "updatedAt"], async (k) => {
+      if (k in req.body) {
+        delete req.body[k];
       }
-    );
+    });
   }
 };
