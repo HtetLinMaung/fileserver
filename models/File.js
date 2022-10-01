@@ -9,6 +9,10 @@ module.exports = createModel("File", {
     type: String,
     default: "",
   },
+  private: {
+    type: Boolean,
+    default: false,
+  },
   createdby: {
     type: String,
     required: true,

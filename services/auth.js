@@ -1,7 +1,7 @@
 const { default: http } = require("starless-http");
 const { asyncEach } = require("starless-async");
 
-const verifyToken = async (token) => {
+exports.verifyToken = async (token) => {
   return http.post(
     `${process.env.authservice_domain}/iam/v1/auth/verify-token`,
     {
@@ -23,7 +23,7 @@ exports.handleAuthorization = async (req) => {
     };
     throw err;
   }
-  const [response, err] = await verifyToken(authHeader.split(" ")[1]);
+  const [response, err] = await this.verifyToken(authHeader.split(" ")[1]);
   if (err) {
     throw err;
   }
