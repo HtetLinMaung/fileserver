@@ -15,17 +15,18 @@
   "devDependencies": {
     "eslint": "^8.24.0",
     "nodemon": "^2.0.20",
-    "starless-server": "^1.8.3"
+    "starless-server": "^1.11.2"
   },
   "dependencies": {
-    "code-alchemy": "^1.1.7",
+    "code-alchemy": "^1.1.10",
     "mime": "^3.0.0",
     "mongoose": "^6.6.1",
     "multiparty": "^4.2.3",
-    "resize-img": "^2.0.0",
+    "resize-img": "^1.1.2",
     "starless-async": "^1.0.0",
     "starless-http": "^1.0.0",
     "starless-upload-chunks": "^0.0.1",
-    "youtube-audio-stream": "^0.3.61"
+    "youtube-audio-stream": "^0.3.61",
+    "ytdl-core": "^4.11.2"
   }
 }
